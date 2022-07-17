@@ -1,0 +1,53 @@
+{% extends "base_shop.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Registration Start -->
+
+    <div class="container-fluid bg-registration py-4" style="margin: 0px 0;">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Join the best Shopping Experience</h5>
+                        <h1 class="text-white">30% Off For New Customers</h1>
+                    </div>
+                    <div class="mb-5"><p class="text-white">Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
+                        ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
+                        dolor</p></div>
+                    <ul class="list-inline text-white m-0">
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Etsea et sit dolor amet ipsum</li>
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Diam dolor diam elitripsum vero.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card border-0">
+                        <div class="card-header bg-light text-center p-4">
+                            <h1 class="m-0">Login</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-primary p-5">
+
+                            <form method="post">
+                                {%  csrf_token %}
+                                <div class="form-group">
+                                     <input type="text" name="username" class="form-control border-0 p-4" placeholder="Your user name">
+                                </div>
+                                <div class="form-group">
+                                  <input type="password" name="password" class="form-control border-0 p-4" placeholder="Your Password">
+                                </div>
+                                <div>
+                                    <button class="btn btn-dark btn-block border-0 py-3" type="submit">Sign In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Registration End -->
+
+
+{% endblock content %}

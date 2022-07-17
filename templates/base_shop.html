@@ -1,0 +1,288 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sharma Shoppe | Ecommerce Portal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'Social_Media.css'%}">
+    <title>ECourses - Sharma Online Shopping</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.ico'%}">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" >
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" >
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
+    <!-- gLightbox gallery-->
+    <link rel="stylesheet" href="{% static 'shop/vendor/glightbox/css/glightbox.min.css'%}">
+    <!-- Range slider-->
+    <link rel="stylesheet" href="{% static 'shop/vendor/nouislider/nouislider.min.css'%}">
+    <!-- Choices CSS-->
+    <link rel="stylesheet" href="{% static 'shop/vendor/choices.js/public/assets/styles/choices.min.css'%}">
+    <!-- Swiper slider-->
+    <link rel="stylesheet" href="{% static 'shop/vendor/swiper/swiper-bundle.min.css'%}">
+    <!-- Google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'shop/css/style.default.css'%}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'shop/css/custom.css'%}">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'shop/img/favicon.png'%}">
+  </head>
+  <body>
+  <div class="container-fluid bg-registration py-1" style="margin: 0px 0;">
+    <div class="page-holder" >
+      <!-- navbar-->
+      <header class="header bg-white">
+        <div class="container px-lg-0">
+          <nav class="navbar navbar-expand-lg navbar-light py-0 px-lg-0"><a class="navbar-brand" href="index-shop"><span class="fw-bold text-uppercase text-dark">Sharma Shoppe</span></a>
+            <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <!-- Link--><a class="nav-link active" href="index-shop">Home</a>
+                </li>
+                <li class="nav-item">
+                  <!-- Link--><a class="nav-link" href="shop">Coupons</a>
+                </li>
+                <li class="nav-item">
+                  <!-- Link--><a class="nav-link" href="detail">My Orders</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                  <div class="dropdown-menu mt-3 shadow-sm" aria-labelledby="pagesDropdown">
+                      <a class="dropdown-item border-1 transition-link" href="shop">Category 1</a>
+                      <a class="dropdown-item border-1 transition-link" href="shop">Category 2</a>
+                      <a class="dropdown-item border-0 transition-link" href="shop">Category 3</a>
+                      <a class="dropdown-item border-1 transition-link" href="shop">Category 4</a>
+                      <a class="dropdown-item border-1 transition-link" href="shop">Category 5</a>
+                  </div>
+                </li>
+              </ul>
+              <ul class="navbar-nav ms-auto">               
+                <li class="nav-item"><a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-dolly-flatbed me-1 text-gray"></i>Cart<small class="text-gray fw-normal">({{ order.get_total_items_count }})</small></a></li>
+                <li class="nav-item"><a class="nav-link" href="#!"> <i class="far fa-heart me-1"></i><small class="text-gray fw-normal"> (0)</small></a></li>
+                  {% if user == none %}
+                        <li class="nav-item"><a class="nav-link" href="#!"> <i class="fas fa-user me-1 text-gray fw-normal"></i>Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="registration"> <i class="fas fa-user me-1 text-gray fw-normal"></i>Register</a></li>
+                  {% else %}
+                        <li class="nav-item"><a class="nav-link" href="#!"> <i class="fas fa-user me-1 text-gray fw-normal"></i> {{ user.username }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="logout"> <i class="fas fa-user me-1 text-gray fw-normal"></i>logout</a></li>
+                  {% endif %}
+
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+
+         <!-- Login Start -->
+    {% if messages %}
+        {%  for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Login End -->
+<div class="bg-dark  " style="margin-top: 1px;" >
+    <div class="container-fluid bg-dark py-1 px-sm-3 px-lg-5" style="margin-top: 5px;">
+        <div class="row pt-3">
+                    <!-- Start Content from child pages -->
+                    {% block content %}
+                    {% endblock content %}
+                    <!-- End Content from child pages -->
+        </div>
+    </div>
+</div>
+        <!-- SERVICES-->
+        <section class="py-5 bg-light">
+          <div class="container">
+            <div class="row text-center gy-3">
+              <div class="col-lg-4">
+                <div class="d-inline-block">
+                  <div class="d-flex align-items-end">
+                    <svg class="svg-icon svg-icon-big svg-icon-light">
+                      <use xlink:href="#delivery-time-1"> </use>
+                    </svg>
+                    <div class="text-start ms-3">
+                      <h6 class="text-uppercase mb-1">Free shipping</h6>
+                      <p class="text-sm mb-0 text-muted">Free shipping worldwide</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="d-inline-block">
+                  <div class="d-flex align-items-end">
+                    <svg class="svg-icon svg-icon-big svg-icon-light">
+                      <use xlink:href="#helpline-24h-1"> </use>
+                    </svg>
+                    <div class="text-start ms-3">
+                      <h6 class="text-uppercase mb-1">24 x 7 service</h6>
+                      <p class="text-sm mb-0 text-muted">Free shipping worldwide</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="d-inline-block">
+                  <div class="d-flex align-items-end">
+                    <svg class="svg-icon svg-icon-big svg-icon-light">
+                      <use xlink:href="#label-tag-1"> </use>
+                    </svg>
+                    <div class="text-start ms-3">
+                      <h6 class="text-uppercase mb-1">Festivaloffers</h6>
+                      <p class="text-sm mb-0 text-muted">Free shipping worldwide</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+  <!-- Footer Start -->
+   <footer class="bg-dark text-white">
+    <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 10px;">
+        <div class="row pt-5">
+            <div class="col-lg-7 col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Get In Touch</h5>
+                        <p><i class="fa fa-map-marker-alt mr-2"></i>{{ shop.address_street }}
+                        {{ shop.address_number }}
+                        {{ shop.address_city }}
+                        {{ shop.address_state }}</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>{{ shop.phone }}</p>
+                        <p><i class="fa fa-envelope mr-2"></i>{{ shop.email }}</p>
+                        <div class="d-flex justify-content-start mt-4">
+                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Our Courses</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
+                            <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 mb-5">
+                <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Newsletter</h5>
+                <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
+                <div class="w-100">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-4">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white">&copy; <a href="#">Domain Name</a>. All Rights Reserved. Designed by <a href="https://theSharmas.com">The Sharmas</a>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <ul class="nav d-inline-flex">
+                    <li class="nav-item">
+                        <a class="nav-link text-white py-0" href="#">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white py-0" href="#">Terms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white py-0" href="#">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white py-0" href="#">Help</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   </footer>
+    <!-- Footer End -->
+<!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'lib/easing/easing.min.js' %}" ></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}" ></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js'%}" ></script>
+       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+      <!-- JavaScript files-->
+      <script src="{% static 'shop/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'shop/vendor/glightbox/js/glightbox.min.js' %}"></script>
+      <script src="{% static 'shop/vendor/nouislider/nouislider.min.js' %}"></script>
+      <script src="{% static 'shop/vendor/swiper/swiper-bundle.min.js' %}"></script>
+      <script src="{% static 'shop/vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+      <script src="{% static 'shop/js/front.js' %}"></script>
+      <script>
+        // ------------------------------------------------------- //
+        //   Inject SVG Sprite -
+        //   see more here
+        //   https://css-tricks.com/ajaxing-svg-sprite/
+        // ------------------------------------------------------ //
+        function injectSvgSprite(path) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", path, true);
+            ajax.send();
+            ajax.onload = function(e) {
+            var div = document.createElement("div");
+            div.className = 'd-none';
+            div.innerHTML = ajax.responseText;
+            document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+        // this is set to BootstrapTemple website as you cannot
+        // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+        // while using file:// protocol
+        // pls don't forget to change to your domain :)
+        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
+      </script>
+ </div>
+  </body>
+</html>
